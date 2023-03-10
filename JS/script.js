@@ -553,5 +553,249 @@ const valueInputs = () => {
   }
  
  
+  
+//  ---    SECTION LOCATIONS     ---
+
+
+let arrayLocation = []
+
+const addOptionSelectLocation = (elem) => {
+   $optionLocations.innerHTML += `
+         <option value="${elem.url}">${elem.name}</option>
+         `
+}
+
+const paintCardLocation = (elem) => {
+   $sectionLocations.innerHTML += `
+         <div class="cardLocation">
+          <div>
+          <h3>${elem.name}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Dimensión</th>
+                <th>Creado</th>
+                <th>Residentes</th>
+              </tr>
+          </thead>
+
+         <tbody>
+         <tr>
+         <td>${elem.type}</td>
+         <td>${elem.dimension}</td>
+         <td>${elem.created}</td>
+         <td class="view viewLocation" id="location${elem.id}">Ver +</td>
+          </tr>
+             
+         </tbody>
+        </table>
+        </div>
+
+        </div>
+         `
+}
+
+
+
+const loadDataCharactersLocation = async() => {
+   try{
+      const respose = await fetch(`https://rickandmortyapi.com/api/location/${location}`)
+      const data = await respose.json()
+      
+      const arrayFetch = data.residents.map(character => fetch(character))
+      
+      const promeseAll = await Promise.all(arrayFetch)
+      
+      const info = await Promise.all(promeseAll.map(character =>character.json()))
+      
+      paintCharacters(info, $paintModalCharactersLocation);
+
+   }
+   catch(error){
+
+   }
+}
+
+
+ const paintPages = (totalElements, array) => {
+   totalElementsLocation = totalElements
+   elementResto = totalElementsLocation  % 10;
+
+    for(i = `${numInitLocation}`; i <= `${numFinalLocation}` ; i++){
+       paintCardLocation(array[i])
+      }
+    }
+    
+  
+ const numerationPageLocation = () => {
+
+   if(numInitLocation.toString().length === 2 || numInitLocation.toString().length === 1){
+     numPagesLocations = Number(numInitLocation.toString().slice(0,1)) + 1
+    
+   } else {
+      numPagesLocations = Number(numInitLocation.toString().slice(0,2)) + 1
+     
+   }
+   $numPageLocation.value = numPagesLocations
+ }
+
+
+
+
+
+ const firstPageLocation = () =>{
+   numInitLocation = 0
+   numFinalLocation = numInitLocation + 9
+   loadDataLocations("https://rickandmortyapi.com/api/location/")
+   numerationPageLocation()
+ }
+
+ const lastPageLocation = () => {
+   numInitLocation = totalElementsLocation -1 - elementResto
+   numFinalLocation = totalElementsLocation -1
+   loadDataLocations("https://rickandmortyapi.com/api/location/")
+   numerationPageLocation()
+ }
+
+ const nextPageLocation = () => {
+  
+   if(numFinalLocation === totalElementsLocation - 1 - elementResto){
+      numInitLocation = numInitLocation + 10;
+      numFinalLocation = numFinalLocation + elementResto;
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+    } else if(numFinalLocation < totalElementsLocation - elementResto - 1){ 
+      numInitLocation = numInitLocation + 10;
+      numFinalLocation = numFinalLocation + 10;
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+    } 
+    numerationPageLocation()
+    
+ }
+
+ const previousPageLocation = () => {
+   
+   if(numFinalLocation === totalElementsLocation - 1){ 
+         numInitLocation = numInitLocation - 10;
+         numFinalLocation = numFinalLocation - 6;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       } else if(numInitLocation > 0){
+         numInitLocation = numInitLocation - 10;
+         numFinalLocation = numFinalLocation - 10;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       }
+       
+       numerationPageLocation()
+   
+ }
+
+ let arrayOrder = []
+ const optionPaintLocation = (value, array) => {
+   
+   if(value === "z-a"){
+      arrayOrder = sortZA(array)
+   } else{
+      arrayOrder = sortAZ(array)
+   }
+  
+   return arrayOrder
+ } 
+
+
+
+
+let locationsInfo = [] 
+let countLocations
+const loadDataLocations = async(url) => {
+   // try{
+      $errorsLocation.classList.add("display");
+      locationsInfo = [] 
+      arrayLocation = []
+      try{
+         const response = await fetch(`${url}${pagesLocation}${searchLocation}`)
+         const data = await response.json()
+
+         countLocations = data.info.count
+         
+
+         for(i = 1 ;i <= data.info.pages ; i++){
+            arrayLocation.push(fetch(`https://rickandmortyapi.com/api/location?page=${i}`))
+         }
+         
+         const info = await Promise.all(arrayLocation)
+         const dataArray = await Promise.all(info.map(location => location.json()))
+     
+         
+
+         $optionLocations.innerHTML = `<option value="all">Todos</option>`
+         $sectionLocations.innerHTML = "",
+        
+         dataArray.forEach( page => {
+            for(const elem of page.results) {
+               addOptionSelectLocation(elem);
+               locationsInfo.push(elem)
+               // paintPages(data.info.count, elem);
+               }})
+               
+         paintPages(data.info.count, optionPaintLocation(valueOrder, locationsInfo))
+
+         
+
+         const $$viewLocation = $$(".viewLocation");
+   
+         $$viewLocation.forEach(elem => elem.addEventListener("click", (e) => {
+            location = elem.id.slice(8,11)
+            loadDataCharactersLocation()
+            $modalCharactersLocation.classList.remove("display")
+            }))
+
+         } catch (error) {
+            $errorsLocation.classList.remove("display");
+         }
+}
+
+
+const inputPaginationLocations = (value) => {
+ 
+   let totalCountPages = Math.ceil((countLocations -1) / 10)
+  
+       if( value === 1){
+         numInitLocation = 0
+         numFinalLocation = 9
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       }
+      if(value !== 1 && value !== totalCountPages){
+         numInitLocation = Number(`${value - 1}${+ 0}`)
+         numFinalLocation = Number(`${value - 1}${+ 0}`) + 9
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+      }
+      if(value === totalCountPages){
+         numInitLocation = Number(`${value - 1}${+ 0}`);
+         numFinalLocation = countLocations -1;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+      }
+     
+ }
+
+
+   const searchLocations = async () => {
+      valueInputs()
+      if(valueLocations !== "all" ){ 
+      try{
+         const response = await fetch(`${valueLocations}`)
+         const data = await response.json()
+         $sectionLocations.innerHTML = "",
+         paintCardLocation(data);
+         $errorsLocation.classList.add("display");
+
+      } catch (error) {
+         $errorsLocation.classList.remove("display");
+      }
+     } else {
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+     }
+
+      
+   }
 
 })
