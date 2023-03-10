@@ -120,6 +120,36 @@ window.addEventListener("load", (e) => {
    let totalElementsLocation 
 
 
+// ---  FUNCTIONS   ---- 
+
+   // -- Generals --
+     $numPageLocation.value = numPagesLocations;
+
+     const sortAZ = (array) => {
+       return  array.sort((a,b) => {
+             if(a.name > b.name){
+              return 1
+             }
+             if(a.name < b.name){
+              return -1
+             }
+             return 0;
+          })
+     }
+     
+     const sortZA = (array) => {
+         return  array.sort((a,b) => {
+               if(a.name < b.name){
+                return 1
+               }
+               if(a.name > b.name){
+                return -1
+               }
+               return 0;
+            })
+       }
+
+
 //    -----SECTION CHARACTERS ----
 
 const pagination = (data) => {
