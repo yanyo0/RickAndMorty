@@ -828,4 +828,147 @@ const inputPaginationLocations = (value) => {
       
    }
 
+   // -----  EVENTOS  -----
+
+    // -- BTN Mood Light --
+
+    $btnMoodLight.addEventListener("click", (e) => {
+        $btnMoodLight.classList.toggle("active");
+        $body.classList.toggle("moodLight")
+    })
+
+    // -- Inputs
+    $search.addEventListener("change", (e) => {
+        valueInputs();
+        searchInput(valuesearch, valueType);
+    })
+    $selectType.addEventListener("change", (e) => {
+        valueInputs();
+        inputSelectType(valueType);
+    })
+
+    $optionCharacters.addEventListener("change", (e) => {
+      valueInputs();
+      charactersStatus(valueStatus);
+    })
+
+    $selectOrder.addEventListener("change", (e) => {
+        valueInputs();
+        loadDataLocations("https://rickandmortyapi.com/api/location/");
+    })
+    
+    $optionLocations.addEventListener("change", (e) => {
+      searchLocations(valueOrder);
+  })
+
+    // -- Modal
+
+    $btnCloseModalCharacter.addEventListener("click", (e) => {
+      $modalCharacter.classList.add("display");
+    })
+
+    $btnCloseEpisodesCh.addEventListener("click", (e) => {
+      $modalCharactersEpisodes.classList.add("display");
+    })
+
+    $btnCloseLocationCh.addEventListener("click", (e) => {
+      $modalCharactersLocation.classList.add("display");
+    })
+
+    // -- BTN Pages Characters --
+
+    $nextPage.addEventListener("click", (e) => {
+        loadNextPage();
+
+    })
+
+    $lastPage.addEventListener("click", (e) => {
+        loadLastPage()
+    })
+
+    $previousPage.addEventListener("click", (e) => {
+        loadPreviousPage()
+    })
+
+    $firstPage.addEventListener("click", (e) => {
+      loadfirstpage()
+    })
+
+    $numPage.addEventListener("change", (e) => {
+      electionPageCharacters()
+    })
+
+    // -- SECTION EPIDODES
+
+    $(".cardSeason1").addEventListener("click", (e) => {
+      selecCardSeason(1)
+    });
+
+    $(".cardSeason2").addEventListener("click", (e) => {
+      selecCardSeason(2)
+    });
+
+    $(".cardSeason3").addEventListener("click", (e) => {
+      selecCardSeason(3)
+    });
+
+    $(".cardSeason4").addEventListener("click", (e) => {
+      selecCardSeason(4)
+    });
+
+    $(".cardSeason5").addEventListener("click", (e) => {
+      selecCardSeason(5)
+    });
+
+    $(".cardSeason6").addEventListener("click", (e) => {
+      selecCardSeason(6)
+    })
+
+
+
+    // -- BTN Pagen Episode
+
+    $("#next-pageEpisodes").addEventListener("click", (e) => {
+      loadNextPageEpisodes();
+    });
+
+    $("#last-pageEpisodes").addEventListener("click", (e) => {
+      loadLastPageEpisodes();
+    });
+
+    $("#previous-pageEpisodes").addEventListener("click", (e) => {
+      loadPreviousPageEpisodes();
+    });
+
+    $("#first-pageEpisodes").addEventListener("click", (e) => {
+      loadfirstpageEpisodes();
+    });
+
+    $numPageEpisodes.addEventListener("change", (e) => {
+      paginationEpisodes();
+    })
+
+
+   //  -- BTN Pages Locations -- 
+   $nextPageLocation.addEventListener("click", (e) => {
+      nextPageLocation();
+   })
+
+   $previousPageLocation.addEventListener("click", (e) => {
+      previousPageLocation();
+   })
+   
+   $numPageLocation.addEventListener("change", (e) => {
+      inputPaginationLocations($numPageLocation.value);
+   })
+
+   $firstPageLocation.addEventListener("click", (e) => {
+      firstPageLocation();
+   })
+
+
+   $lastPageLocation.addEventListener("click", (e) => {
+      lastPageLocation();
+   })
+
 })
