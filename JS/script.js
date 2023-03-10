@@ -827,5 +827,13 @@ const inputPaginationLocations = (value) => {
 
       
    }
+   const loadData = () => { 
+    loadDataEpisodes()
+    loadDataLocations("https://rickandmortyapi.com/api/location/")
+    loadDataCharacters("https://rickandmortyapi.com/api/character/")
+  }
+  
+  
+  loadData()
 
 })
