@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./CSS/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Warnes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./img/logoWeb.png" />
+
+    <script src="./JS/script.js" defer></script>
+
+    <title>Rick and Morty view!</title>
+    
+  </head>
+
+  <body>
+    <header>
+      <div class="headerBox">
+        <img src="./img/logoRAM.png" alt="" />
+      </div>
+    </header>
+
+    <main>
+      <div class="containMain">
+        <div id="moodLightBox">
+          <button type="button" id="btnMoodLight">
+            <span><i class="fa-solid fa-moon"></i></span>
+            <span><i class="fa-solid fa-sun"></i></span>
+          </button>
+        </div>
+
+        <div>
+          <h3 class="titleSearch">Búsqueda</h3>
+        </div>
+        <div class="containerForm">
+          <form action="">
+            <div class="searchBox">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                id="search"
+                type="text"
+                placeholder="Ingresá tu búsqueda" 
+              />
+            </div>
+
+            <div class="selectSearchBox">
+              <div class="selectBox">
+                <div class="selectType">
+                  <label for="">TIPO</label>
+                  <select name="" id="selectType">
+                    <option value="characters">PERSONAJES</option>
+                    <option value="episode">EPISODIOS</option>
+                    <option value="locations">LOCALIZACIÓN</option>
+                  </select>
+                </div>
+
+                <select name="" class="optionCharacters">
+                  <option value="all">Todos</option>
+                  <option value="alive">Vivo</option>
+                  <option value="dead">Muerto</option>
+                  <option value="unknown">Desconocido</option>
+                </select>
+
+                <select name="" class="display optionLocations">
+                  <option value="all">Todos</option>
+                </select>
+              </div>
+
+              <label for="">ORDEN</label>
+              <select name="" id="selectOrder" disabled>
+                <option value="a-z">A/Z</option>
+                <option value="z-a">Z/A</option>
+              </select>
+              <!-- <button id="btnSerch" type="submit">BUSCAR</button> -->
+            </div>
+          </form>
+        </div>
+
+
+
+        <!-- <-- -----   SECTION EPISODES  -----    --> 
+        <section class="containerInfoSeason">
+          <div class="resultBox">
+            <h2>Resultados</h2>
+            <p id="searchResult"></p>
+          </div>
+
+          
+
+          <div class="seasonBox display">
+
+            <div class="cardSeason cardSeason1">
+              <img src="./img/season_1.png" alt="" />
+              <h5>Season 1</h5>
+            </div>
+
+            <div class="cardSeason cardSeason2">
+              <img src="./img/season2.png" alt="" />
+              <h5>Season 2</h5>
+            </div>
+
+            <div class="cardSeason cardSeason3">
+              <img src="./img/season3.png" alt="" />
+              <h5>Season 3</h5>
+            </div>
+
+            <div class="cardSeason cardSeason4">
+              <img src="./img/season4.jpg" alt="" />
+              <h5>Season 4</h5>
+            </div>
+
+            <div class="cardSeason cardSeason5">
+              <img src="./img/season_5.jpg" alt="" />
+              <h5>Season 5</h5>
+            </div>
+
+            <div class="cardSeason cardSeason6">
+              <img src="./img/season_6.jpg" alt="" />
+              <h5>Season 6</h5>
+            </div>
+          </div>
+        </section>
+
+        <section class="sectionIndividualSeason display">
+          <div class="infoEpisodes">
+            <article class="season1Pages" id="1">
+            <div class="season">
+            <div>
+                <img src="./img/season1.jpg" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season1">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+       
+
+            <article class="season2Pages display" id="2">    
+        <div class="season">
+            <div>
+                <img src="./img/season2.png" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season2">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+
+            <article class="season3Pages display" id="3">
+        <div class="season">
+            <div>
+                <img src="./img/season3.png" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season3">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+
+
+            <article class="season4Pages display" id="4">
+        <div class="season">
+            <div>
+                <img src="./img/season4.jpg" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season4">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+
+            <article class="season5Pages display" id="5">
+        <div class="season" >
+            <div>
+                <img src="./img/season_5.jpg" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season5">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+
+            <article class="season6Pages display" id="6">
+            <div class="season">
+            <div>
+                <img src="./img/season_6.jpg" alt="">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Creado</th>
+                            <th>Fecha emisión</th>
+                            <th>Episodio</th>
+                            <th>Personajes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="season6">
+                       
+                    </tbody>
+                    <tfoot id="episodeCharacters">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+            </article>
+          
+        <div id="boxButtonEpisodes">
+          <button id="first-pageEpisodes" type="button"><<</button>
+          <button id="previous-pageEpisodes" type="button"><</button>
+          <input id="numPageEpisodes" type="number" >
+        
+          <button id="next-pageEpisodes" type="button">></button>
+          <button id="last-pageEpisodes" type="button">>></button>
+        </div>
+      
+        <article class="modalCharactersEpisodes display">
+          <button type="button" class="btn_closeModal btnCloseEpisodesCh "> <strong>X</strong> </button>
+          <div class="paint-modalCharactersEpisodes">
+
+          </div>
+
+        </article>
+        </section>
+
+
+
+
+
+
+        <!-- ----   SECTION CHARACTERS   ----  -->
+
+        <section class="containerInfoCharacter">
+          <section class="errors display">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p>No se pudo mostrar el contenido!</p> 
+            <p>Intente cargar la pagina nuevamente</p>
+           </section>
+          <div id="characterBox">
+            
+          </div>
+          <div id="boxButton">
+            
+            <button id="first-page" type="button"><<</button>
+            <button id="previous-page" type="button"><</button>
+            <input id="numPage" type="text">
+            <p id="countPages"></p>
+            <button id="next-page" type="button">></button>
+            <button id="last-page" type="button">>></button>
+          </div>
+        </section>
+
+
+
+        <div class="modalCharacter display">
+          <button class="btn_closeModal btn_closeModalCharacter" type="button"> <strong>X</strong></button>
+        <section class="viewIndividualCharacter ">
+          <article id="viewCharacter">
+            
+          </article>
+
+          <article class="episode-viewCharacter display">
+            <div class="result_episode-viewCharacter">
+              <h2>Resultados</h2>
+              <p>23456 resultados</p>
+            </div>
+
+            <div></div>
+          </article>
+        </section>
+       </div>
+
+       <section>
+        <div class="containerLocation display">
+
+          <section class="errors errorsLocation display">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p>No se pudo mostrar el contenido!</p> 
+            <p>Intente cargar la pagina nuevamente</p>
+           </section>
+
+        <div class="sectionLocations ">
+        
+
+       
+         </div>
+
+      <div id="boxButtonLocation">
+            
+        <button id="first-pageLocation" type="button"><<</button>
+        <button id="previous-pageLocation" type="button"><</button>
+        <input id="numPageLocation" type="text">
+        <button id="next-pageLocation" type="button">></button>
+        <button id="last-pageLocation" type="button">>></button>
+        </div>
+
+       </div>
+      <article class="modalCharactersLocation display">
+        <button type="button" class="btn_closeModal btnCloseLocationCh "> <strong>X</strong> </button>
+        <div class="paint-modalCharactersLocation">
+
+        </div>
+
+      </article>
+      </section>
+      </div>
+
+     
+    </main>
+
+    <footer>
+      <p>
+        Hecho con <i class="fa-solid fa-heart"></i> por <span>Yanyo0 </span>
+        <img class="imgLogo" src="./img/logo.png" alt="nariz de chanco" />
+      </p>
+    </footer>
+  </body>
+</html>
