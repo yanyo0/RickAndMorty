@@ -320,8 +320,238 @@ const valueInputs = () => {
        locationCharacters = `&status=${value}`;
        loadDataCharacters("https://rickandmortyapi.com/api/character/");
      }
+ }
+
+
+
+ const desingEpisode = (episode) => {
+    return episode.slice(0,3)
+  }
+ 
+ const paintEpisodes = (elem) => {
+    if(desingEpisode(elem.episode) === "S01"){
+       $season1.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S02"){
+       $season2.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S03"){
+       $season3.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S04"){
+           $season4.innerHTML += `
+               <tr>
+                   <td>${elem.name}</td>
+                   <td>${elem.air_date}</td>
+                   <td>${elem.created}</td>
+                   <td>${elem.episode}</td>
+                   <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+               </tr>
+           `}
+    if(desingEpisode(elem.episode) === "S05"){
+       $season5.innerHTML += `
+          <tr>
+                <td>${elem.name}</td>
+                <td>${elem.air_date}</td>
+                <td>${elem.created}</td>
+                <td>${elem.episode}</td>
+                <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+          </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S06"){
+          $season6.innerHTML += `
+                <tr>
+                   <td>${elem.name}</td>
+                   <td>${elem.air_date}</td>
+                   <td>${elem.created}</td>
+                   <td>${elem.episode}</td>
+                   <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+                </tr>
+          `}
  
  }
+ 
+ let arrayEpisodes = []
+ 
+ const loadDataCharactersEpisode = async() => {
+    try{
+       const respose = await fetch(`https://rickandmortyapi.com/api/episode/${episode}`)
+       const data = await respose.json()
+      
+       const arrayFetch = data.characters.map(character => fetch(character))
+       
+       const promeseAll = await Promise.all(arrayFetch)
+       
+       const info = await Promise.all(promeseAll.map(character =>character.json()))
+       
+       paintCharacters(info, $paintModalCharactersEpisodes);
+ 
+    }
+    catch(error){
+ 
+    }
+ }
+ 
+ const loadDataEpisodes = async() => {
+    try{
+       const response = await fetch(`https://rickandmortyapi.com/api/episode/${searchNameEpisode}`)
+       const data = await response.json()
+ 
+       for(i = 1 ;i <= data.info.pages ; i++){
+          arrayEpisodes.push(fetch(`https://rickandmortyapi.com/api/episode?page=${i}`))
+       }
+ 
+       const info = await Promise.all(arrayEpisodes)
+       const dataArray = await Promise.all(info.map(ep => ep.json()))
+ 
+       dataArray.forEach( page => {
+          for(const elem of page.results) {
+             paintEpisodes(elem)
+             }})
+ 
+       const $$viewEpisode = $$(".viewEpisode");
+ 
+       $$viewEpisode.forEach(elem => elem.addEventListener("click", (e) => {
+          episode = elem.id
+          loadDataCharactersEpisode()
+          $modalCharactersEpisodes.classList.remove("display")
+          } ))
+ 
+       } catch (error) {
+                   $errors.classList.remove("display")
+       }
+ 
+   }
+ 
+ 
+ const episodePagesClassList = () => {
+    if(pagesEpisode === 1){
+       $season1Pages.classList.remove("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 2){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.remove("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 3){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.remove("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 4){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.remove("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 5){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.remove("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 6){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.remove("display");
+    }
+    $numPageEpisodes.value = pagesEpisode;
+ }
+ 
+ const selecCardSeason = (page) => {
+    $seasonBox.classList.add("display");
+    $sectionIndividualSeason.classList.remove("display");
+    pagesEpisode = page
+    episodePagesClassList();
+ }
+ 
+   const loadNextPageEpisodes =() => {
+    if(pagesEpisode + 1 <= 6 ){
+       pagesEpisode = pagesEpisode + 1;
+      episodePagesClassList()
+    }}
+ 
+ const loadLastPageEpisodes = () => {
+    if(pagesEpisode !== 6){
+     pagesEpisode = 6
+     episodePagesClassList()
+    }
+    }
+ 
+ 
+ const loadPreviousPageEpisodes = () => {
+    if(pagesEpisode - 1 > 0 ){
+       pagesEpisode = pagesEpisode - 1;
+      episodePagesClassList()
+    }
+    }
+ 
+ const loadfirstpageEpisodes = () => {
+    if(pagesEpisode !== 1){
+    pagesEpisode = 1;
+    episodePagesClassList();
+    }
+ }
+ 
+ const paginationEpisodes = () => {
+    pagesEpisode = Number($numPageEpisodes.value);
+ 
+    episodePagesClassList();
+ }
+ 
+ const searchInput = (valueSerch, valueType) => {
+ 
+    if(valueType === "characters"){
+       nameSearchCharacters = `&name=${valueSerch}`;
+       loadDataCharacters("https://rickandmortyapi.com/api/character/") ;
+ 
+    }
+    if(valueType === "episode"){
+       searchNameEpisode = `&name=${valueSerch}`
+       loadDataCharactersEpisode()
+    }
+ 
+  }
+ 
  
 
 })
