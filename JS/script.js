@@ -119,4 +119,133 @@ window.addEventListener("load", (e) => {
    let numPagesLocations = 1;
    let totalElementsLocation 
 
+
+//    -----SECTION CHARACTERS ----
+
+const pagination = (data) => {
+    $numPage.value = page;
+    $countPages.innerText = "";
+    $countPages.innerText = ` de ${data}`;
+
+ }
+
+ const paintIndividualCharacter = async (num) => {
+    try{
+       const response = await fetch(`https://rickandmortyapi.com/api/character/${num}`)
+       const data = await response.json()
+       $viewCharacter.innerHTML = "";
+       $viewCharacter.innerHTML = `
+          <div>
+           <img class="img-viewCharacter" src="${data.image}" alt="Imagen de ${data.name}"/>
+          </div>
+          <div class="infoBox-viewCharacter">
+               <h3>${data.name}</h3>
+               <div class="itemsCharacters">
+               <h6>Estado:</h6>
+               <p>${data.status}</p>
+               </div>
+               <div class="itemsCharacters">
+               <h6>Especie:</h6>
+               <p>${data.species}</p>
+               </div>
+               <div class="itemsCharacters">
+               <h6>Tipo:</h6>
+               <p>${data.type !== "" ? data.type : "-" }</p>
+               </div>
+               <div class="itemsCharacters">
+               <h6>Genero:</h6>
+               <p>${data.gender}</p>
+               </div>
+               <div class="itemsCharacters">
+               <h6>Origen:</h6>
+               <p>${data.origin.name}</p>
+               </div>
+               <div class="itemsCharacters">
+               <h6>Creado:</h6>
+               <p>${Date(data.create)}</p>
+               </div>
+          </div>
+       `;
+    } catch (error) {
+       $viewCharacter.innerHTML = `
+       <section class="errors">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <p>No se pudo cargar el contenido!<br> Intente cargar la pagina nuevamente</p>
+         </section>
+       `
+    }
+
+  }
+
+  const paintCharacters = (data, box) => {
+    box.innerHTML = "";
+    data.forEach(character => {
+       box.innerHTML += `
+       <div class="cardCharacter" id="${character.id}">
+             <div class="characterImg">
+               <img src="${character.image}" alt="Imagen de ${character.name}" />
+             </div>
+             <h5>${character.name}</h5>
+           </div>
+       `
+    })
+    const $$cardCharacter = $$(".cardCharacter")
+    $$cardCharacter.forEach(box => box.addEventListener("click", (e) => {
+       console.log(box.id)
+       $modalCharacter.classList.remove("display");
+       paintIndividualCharacter(box.id)
+    }))
+   }
+
+  const loadDataCharacters = async(url) => {
+    try{
+       const response = await fetch(`${url}?page=${page}${nameSearchCharacters}${statusCharacter}${locationCharacters}`)
+       const data = await response.json()
+       paintCharacters(data.results, $characterBox);
+       $searchResult.innerText = "";
+       $searchResult.innerText = data.info.count;
+       totalPages = data.info.pages
+       pagination(totalPages);
+       $errors.classList.add("display");
+    } catch (error) {
+       $errors.classList.remove("display")
+    }
+
+   }
+
+
+ const loadNextPage =() => {
+    if(page + 1 <= totalPages ){
+    page = page + 1
+    loadDataCharacters("https://rickandmortyapi.com/api/character/");
+    }}
+
+ const loadLastPage = () => {
+    if(page !== totalPages){
+       page = totalPages;
+       loadDataCharacters("https://rickandmortyapi.com/api/character/");
+    }
+    }
+
+ const loadPreviousPage = () => {
+    if(page - 1 > 0 ){
+       page = page - 1
+       loadDataCharacters("https://rickandmortyapi.com/api/character/");
+       }
+    }
+
+ const loadfirstpage = () => {
+    if(page !== 1){
+    page = 1;
+    loadDataCharacters("https://rickandmortyapi.com/api/character/");
+    }
+ }
+
+ const electionPageCharacters = () => {
+    if($numPage.value > 0 && $numPage.value <= totalPages  ){
+       page = $numPage.value
+       loadDataCharacters("https://rickandmortyapi.com/api/character/");
+       }
+    }
+
 })
