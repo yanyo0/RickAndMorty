@@ -1,0 +1,81 @@
+#viewCharacter {
+    width: 95%;
+    @include borderInput;
+    @include flex(flex, row, nowrap, center, flex-start );
+
+
+    .infoBox-viewCharacter {
+        padding: 1%;
+        width: 60%;
+        height: auto;
+        margin-left: 5%;
+        @include flex(flex, column, nowrap, space-around, flex-start);
+        div {
+            @include flex(flex, row, nowrap, flex-start, center)
+        }
+        .itemsCharacters{
+            width: 100%;
+            margin-top: 4%;
+            @include flex(flex, row, nowrap, flex-start, center);
+
+            p{
+                margin-left: 3%;
+            }
+        }
+    }
+
+    @include responsive(800px){
+        width: 100%;
+    }
+    @include responsive(900px){
+        @include flex(flex, column, nowrap, center, center);
+        div{
+            text-align: center;
+        .img-viewCharacter{
+          width: 80%;
+        } }
+
+        .infoBox-viewCharacter{
+            width: 90%;
+            margin-top: 5%;
+        }
+    }
+}
+
+.episode-viewCharacter {
+    background-color: rgba(17, 17, 17, 0.1);
+    align-self: flex-start;
+    padding: 2%;
+    margin-top: 5%;
+    
+
+    .result_episode-viewCharacter{
+        
+        & ,h2, p {
+            background-color: rgba(17, 17, 17, 0.1);
+        }
+        p{
+            margin-top: 6%;
+        }
+       
+    @include responsive(){
+        margin-top: 10%;
+        text-align: center;
+      
+    }
+   }  
+
+}
+
+
+.season{
+    width: 100%;
+    padding: 1%;
+    @include flex(flex, column, nowrap, space-between, center);
+    div img{
+        width: 350px;
+        height: 450px;
+    }
+    
+
+}

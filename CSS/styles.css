@@ -1,0 +1,817 @@
+* {
+  margin: 0;
+  background-color: black;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Inconsolata", monospace;
+  font-size: 101%;
+  color: #d4d4d8;
+}
+
+.infoBox-viewCharacter h3 {
+  font-size: 150%;
+  color: #84cc16;
+}
+
+footer .fa-heart {
+  color: #84cc16;
+}
+footer p span {
+  font-family: "Warnes", cursive;
+  color: #84cc16;
+}
+
+.headerBox {
+  background-image: url(../img/rickAndMorty.jpeg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.7;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.headerBox img {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+main {
+  width: 100%;
+  padding: 1%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+main .containMain {
+  width: 90%;
+  padding: 1%;
+}
+@media (max-width: 600px) {
+  main .containMain {
+    width: 100%;
+  }
+}
+main .containMain #moodLightBox {
+  margin-bottom: 4%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.titleSearch {
+  font-size: 1.5rem;
+}
+@media (max-width: 885px) {
+  .titleSearch {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.containerForm {
+  width: 100%;
+  margin-top: 1%;
+}
+.containerForm form {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 1140px) {
+  .containerForm form {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.containerForm .searchBox {
+  width: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media (max-width: 885px) {
+  .containerForm .searchBox {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.containerForm .selectSearchBox {
+  width: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (max-width: 1140px) {
+  .containerForm .selectSearchBox {
+    margin-top: 8%;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 530px) {
+  .containerForm .selectSearchBox {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.containerForm .selectSearchBox .selectType {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 530px) {
+  .containerForm .selectSearchBox .selectType {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.containerForm .selectSearchBox .selectBox {
+  width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2%;
+}
+@media (max-width: 530px) {
+  .containerForm .selectSearchBox .selectBox {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.containerForm .selectSearchBox .selectBox .optionCharacters, .containerForm .selectSearchBox .selectBox .optionLocations {
+  margin-top: 3%;
+  width: 60%;
+}
+
+.modalCharacter, .modalCharactersEpisodes, .modalCharactersLocation {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  width: 70%;
+  background-color: rgba(17, 17, 17, 0.749);
+  padding: 2%;
+  border-radius: 15px;
+  position: fixed;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+}
+
+.modalCharacter {
+  z-index: 2;
+  left: 15vw;
+  top: 10vh;
+}
+
+.modalCharactersEpisodes, .modalCharactersLocation {
+  top: 5vh;
+  z-index: 1;
+  left: 5vw;
+  width: 85%;
+  height: 85%;
+  text-align: center;
+}
+.modalCharactersEpisodes .paint-modalCharactersEpisodes, .modalCharactersEpisodes .paint-modalCharactersLocation, .modalCharactersLocation .paint-modalCharactersEpisodes, .modalCharactersLocation .paint-modalCharactersLocation {
+  width: 90%;
+  padding: 2%;
+  margin-top: 2%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: scroll;
+}
+
+#search {
+  width: 80%;
+  margin-top: 2%;
+  margin-left: 3%;
+  border: none;
+  border-bottom: 2px solid #84cc16;
+}
+
+#numPage, #numPageEpisodes, #numPageLocation {
+  width: 45px;
+  height: 35px;
+  text-align: center;
+  font-size: 110%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+}
+@media (max-width: 566px) {
+  #numPage, #numPageEpisodes, #numPageLocation {
+    width: 30px;
+    height: 30px;
+    font-size: 80%;
+  }
+}
+
+#numPage {
+  margin-right: 2%;
+}
+
+#selectType, #selectOrder, .optionCharacters, .optionLocations {
+  margin-left: 4%;
+  margin-right: 4%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+}
+@media (max-width: 530px) {
+  #selectType, #selectOrder, .optionCharacters, .optionLocations {
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+}
+
+#btnMoodLight {
+  width: 54px;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  background-color: #202020;
+}
+#btnMoodLight span {
+  font-size: 80%;
+  padding: 4px;
+  width: 25px;
+  height: 25px;
+  display: block;
+  background-color: rgba(32, 32, 32, 0);
+  color: #84cc16;
+}
+#btnMoodLight span i {
+  color: #84cc16;
+  background-color: #202020;
+}
+#btnMoodLight::after {
+  content: "";
+  display: block;
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  background-color: #84cc16;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  transition: 0.3s ease all;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+#btnMoodLight.active::after {
+  right: 0;
+  left: unset;
+}
+
+#btnSerch {
+  margin-left: 4%;
+  margin-right: 4%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+  padding: 2%;
+}
+@media (max-width: 500px) {
+  #btnSerch {
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+}
+
+#boxButton button, #boxButtonEpisodes button, #boxButtonLocation button {
+  margin-left: 4%;
+  margin-right: 4%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+  padding: 2%;
+}
+
+.btn_closeModal {
+  width: 45px;
+  align-self: flex-end;
+  margin-right: 2%;
+  margin-top: 2%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+}
+
+.containerInfoSeason, .containerInfoCharacter, .viewIndividualCharacter {
+  width: 100%;
+  margin-top: 1%;
+  padding: 2%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewIndividualCharacter {
+  margin-top: 3%;
+  background-color: rgba(17, 17, 17, 0.1);
+}
+
+#boxButton, #boxButtonEpisodes, #boxButtonLocation {
+  width: 30%;
+  margin-top: 8%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 1360px) {
+  #boxButton, #boxButtonEpisodes, #boxButtonLocation {
+    width: 40%;
+  }
+}
+@media (max-width: 994px) {
+  #boxButton, #boxButtonEpisodes, #boxButtonLocation {
+    width: 50%;
+  }
+}
+@media (max-width: 790px) {
+  #boxButton, #boxButtonEpisodes, #boxButtonLocation {
+    width: 60%;
+  }
+}
+@media (max-width: 675px) {
+  #boxButton, #boxButtonEpisodes, #boxButtonLocation {
+    width: 70%;
+  }
+}
+@media (max-width: 566px) {
+  #boxButton, #boxButtonEpisodes, #boxButtonLocation {
+    width: 100%;
+  }
+}
+
+.resultBox {
+  align-self: flex-start;
+}
+.resultBox p {
+  margin-top: 6%;
+}
+@media (max-width: 640px) {
+  .resultBox {
+    text-align: center;
+    margin-top: 10%;
+  }
+}
+
+.seasonBox, #characterBox {
+  width: 100%;
+  margin-top: 1%;
+  padding: 1%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+@media (max-width: 640px) {
+  .seasonBox, #characterBox {
+    justify-content: center;
+  }
+}
+
+.errors {
+  padding: 2%;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.errors .fa-circle-exclamation {
+  color: red;
+  font-size: 300%;
+}
+.errors p {
+  margin-top: 4%;
+  font-size: 200%;
+  color: #84cc16;
+}
+
+.sectionIndividualSeason {
+  width: 100%;
+}
+
+.infoEpisodes {
+  width: 100%;
+  padding: 1%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.containerLocation {
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+}
+.containerLocation, .containerLocation .sectionLocations {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.containerLocation .sectionLocations, .containerLocation .sectionLocations .sectionLocations {
+  width: 100%;
+}
+
+.cardSeason {
+  width: 16%;
+  margin: 4% 1% 3% 1%;
+}
+.cardSeason img {
+  width: 100%;
+  height: 300px;
+  box-shadow: 5px 5px 10px #3e3e41;
+  transform: translateY(0%);
+  transition: 0.3s;
+}
+.cardSeason h5 {
+  margin-top: 7%;
+}
+.cardSeason:hover img {
+  transform: translateY(-3%);
+}
+.cardSeason:hover h5 {
+  color: #84cc16;
+}
+@media (max-width: 1100px) {
+  .cardSeason {
+    width: 29.3333333333%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+@media (max-width: 680px) {
+  .cardSeason {
+    width: 76%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+
+.cardCharacter {
+  width: 12.6666666667%;
+  margin: 3% 1% 0% 1%;
+}
+.cardCharacter .characterImg {
+  overflow: hidden;
+}
+.cardCharacter img {
+  width: 100%;
+  height: 250px;
+  transition: 0.4s;
+}
+.cardCharacter h5 {
+  text-align: center;
+  padding-top: 10%;
+  font-size: 90%;
+  height: 70px;
+  background-color: #18181b;
+  border-top: 5px solid #84cc16;
+}
+.cardCharacter:hover img {
+  transform: scale(1.1);
+}
+.cardCharacter:hover h5 {
+  background-color: #84cc16;
+  color: black;
+}
+@media (max-width: 1200px) {
+  .cardCharacter {
+    width: 16%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+@media (max-width: 1000px) {
+  .cardCharacter {
+    width: 21%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+@media (max-width: 800px) {
+  .cardCharacter {
+    width: 29.3333333333%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+@media (max-width: 600px) {
+  .cardCharacter {
+    width: 46%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+@media (max-width: 400px) {
+  .cardCharacter {
+    width: 76%;
+    margin: 4% 1% 3% 1%;
+  }
+}
+
+.cardLocation {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 2%;
+}
+@media (max-width: 750px) {
+  .cardLocation {
+    width: 100%;
+    margin-top: 5%;
+  }
+}
+.cardLocation div {
+  width: 90%;
+}
+@media (max-width: 750px) {
+  .cardLocation div {
+    width: 100%;
+  }
+}
+.cardLocation div h3 {
+  padding: 1%;
+  font-size: 120%;
+  border: 1px solid #84cc16;
+  border-radius: 5px 5px 0px 0px;
+  color: #84cc16;
+  background-color: rgba(32, 32, 32, 0.3);
+}
+@media (max-width: 640px) {
+  .cardLocation div h3 {
+    font-size: 100%;
+  }
+}
+.cardLocation div table {
+  margin: 0%;
+}
+.cardLocation div table th {
+  background-color: black;
+}
+.cardLocation div table tbody {
+  background-color: rgba(32, 32, 32, 0.3);
+}
+@media (max-width: 640px) {
+  .cardLocation div table {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .cardLocation div table {
+    font-size: 75%;
+  }
+  .cardLocation div table th, .cardLocation div table td {
+    padding: 9px;
+  }
+}
+@media (max-width: 415px) {
+  .cardLocation div table {
+    font-size: 65%;
+  }
+  .cardLocation div table th, .cardLocation div table td {
+    padding: 5px;
+  }
+}
+
+#viewCharacter {
+  width: 95%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+#viewCharacter .infoBox-viewCharacter {
+  padding: 1%;
+  width: 60%;
+  height: auto;
+  margin-left: 5%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+#viewCharacter .infoBox-viewCharacter div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+#viewCharacter .infoBox-viewCharacter .itemsCharacters {
+  width: 100%;
+  margin-top: 4%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+#viewCharacter .infoBox-viewCharacter .itemsCharacters p {
+  margin-left: 3%;
+}
+@media (max-width: 800px) {
+  #viewCharacter {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  #viewCharacter {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  #viewCharacter div {
+    text-align: center;
+  }
+  #viewCharacter div .img-viewCharacter {
+    width: 80%;
+  }
+  #viewCharacter .infoBox-viewCharacter {
+    width: 90%;
+    margin-top: 5%;
+  }
+}
+
+.episode-viewCharacter {
+  background-color: rgba(17, 17, 17, 0.1);
+  align-self: flex-start;
+  padding: 2%;
+  margin-top: 5%;
+}
+.episode-viewCharacter .result_episode-viewCharacter, .episode-viewCharacter .result_episode-viewCharacter h2, .episode-viewCharacter .result_episode-viewCharacter p {
+  background-color: rgba(17, 17, 17, 0.1);
+}
+.episode-viewCharacter .result_episode-viewCharacter p {
+  margin-top: 6%;
+}
+@media (max-width: 640px) {
+  .episode-viewCharacter .result_episode-viewCharacter {
+    margin-top: 10%;
+    text-align: center;
+  }
+}
+
+.season {
+  width: 100%;
+  padding: 1%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.season div img {
+  width: 350px;
+  height: 450px;
+}
+
+.display {
+  display: none;
+}
+
+table {
+  width: 100%;
+  margin-top: 6%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+  text-align: center;
+  border-collapse: collapse;
+}
+table th, table td {
+  padding: 13px;
+  font-size: 90%;
+}
+table thead tr th {
+  color: #84cc16;
+  background-color: rgba(32, 32, 32, 0.3);
+}
+table .view {
+  color: #84cc16;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+@media (max-width: 640px) {
+  table {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  table {
+    font-size: 70%;
+  }
+  table th, table td {
+    padding: 9px;
+  }
+}
+@media (max-width: 415px) {
+  table {
+    font-size: 65%;
+  }
+  table th, table td {
+    padding: 5px;
+  }
+}
+
+.season table {
+  width: 95%;
+}
+
+footer {
+  width: 100%;
+  background-color: #030303;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-top: 1px solid #84cc16;
+  box-shadow: 0px -5px 10px #29292c;
+}
+footer .imgLogo {
+  width: 20px;
+  padding-top: 2%;
+}
+
+.moodLight * {
+  background-color: #d4d4d8;
+  color: black;
+}
+.moodLight .headerBox {
+  opacity: 1;
+}
+.moodLight .cardCharacter h5 {
+  background-color: #535355;
+}
+.moodLight .modalCharacter {
+  background-color: rgba(212, 212, 216, 0.7);
+}
+.moodLight .viewIndividualCharacter {
+  background-color: rgba(212, 212, 216, 0.1);
+}
+.moodLight .episode-viewCharacter {
+  background-color: rgba(212, 212, 216, 0.1);
+}
+.moodLight .episode-viewCharacter .result_episode-viewCharacter, .moodLight .episode-viewCharacter .result_episode-viewCharacter h2, .moodLight .episode-viewCharacter .result_episode-viewCharacter p {
+  background-color: rgba(212, 212, 216, 0.1);
+  color: black;
+}
+.moodLight .cardLocation div h3 {
+  background-color: #535355;
+}
+.moodLight .cardLocation table th {
+  background-color: #d4d4d8;
+}
+
+/*# sourceMappingURL=styles.css.map */

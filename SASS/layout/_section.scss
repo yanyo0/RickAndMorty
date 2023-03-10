@@ -1,0 +1,98 @@
+.containerInfoSeason, .containerInfoCharacter, .viewIndividualCharacter{
+    width: 100%;
+    margin-top: 1%;
+    padding: 2%;
+    @include flex(flex, column, nowrap, space-between, center )
+  
+  }
+  .viewIndividualCharacter{
+    margin-top: 3%;
+    background-color: rgba(17, 17, 17, 0.1);
+  }
+  
+  
+    #boxButton , #boxButtonEpisodes, #boxButtonLocation {
+        width: 30%;
+        margin-top: 8%;
+        margin-bottom: 2%;
+        @include flex(flex, row, nowrap, space-between, center);
+        @include responsive(1360px){
+            width: 40%;
+        };
+        @include responsive(994px){
+            width: 50%;
+        };
+        @include responsive(790px){
+            width: 60%;
+        };
+        @include responsive(675px){
+            width: 70%;
+        };
+        @include responsive(566px){
+            width: 100%;
+        };
+
+    }
+
+  .resultBox{
+      align-self: flex-start;
+      p{
+          margin-top: 6%;
+      }
+      @include responsive(){
+          text-align: center;
+          margin-top: 10%;
+      }
+  }
+  
+  .seasonBox, #characterBox{
+      width: 100%;
+      margin-top: 1%;
+      padding: 1%;
+      
+      @include flex(flex, row, wrap, space-between, flex-start );
+  
+      @include responsive(){
+          justify-content: center;
+      }
+   }
+
+   .errors{
+    padding: 2%;
+    width: 100%;
+    height: auto;
+    @include flex(flex, column, nowrap, space-between, center);
+    .fa-circle-exclamation{
+        color: red;
+        font-size: 300%;
+    }
+    p{
+        margin-top: 4%;
+        font-size: 200% ;
+        color: $colorSecondary;
+    }
+   }
+   .sectionIndividualSeason{
+        width: 100%;
+    };
+   .infoEpisodes {
+    width: 100%;
+    padding: 1%;
+    @include flex(flex, column, nowrap, space-between, center);
+
+    
+
+    
+   }
+
+
+   .containerLocation{
+    @include borderInput;
+   
+    &, .sectionLocations{
+    @include flex(flex, column, nowrap, space-between, center);
+    
+    .sectionLocations{
+        width: 100%;
+    }
+   }}
