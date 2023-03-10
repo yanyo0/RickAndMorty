@@ -248,4 +248,80 @@ const pagination = (data) => {
        }
     }
 
+
+
+    
+
+// -- Input --
+
+const valueInputs = () => {
+    valuesearch = $search.value
+    valueType = $selectType.value
+    valueStatus = $optionCharacters.value
+    valueLocations = $optionLocations.value
+    valueOrder = $selectOrder.value
+ }
+ 
+ 
+ 
+ 
+ const inputSelectType = (value) => {
+     if(value === "characters"){
+        $resultBox.classList.remove("display");
+        $optionCharacters.classList.remove("display");
+        $optionLocations.classList.add("display");
+        $containerInfoCharacter.classList.remove("display");
+        $seasonBox.classList.add("display");
+        $sectionIndividualSeason.classList.add("display");
+        $containerLocation.classList.add("display");
+        $selectOrder.setAttribute("disabled","")
+        $search.removeAttribute("disabled");
+ 
+     } else if(value === "locations") {
+        $resultBox.classList.add("display");
+        $containerInfoCharacter.classList.add("display");
+        $optionCharacters.classList.add("display");
+        $optionLocations.classList.remove("display");
+        $sectionIndividualSeason.classList.add("display");
+        $containerLocation.classList.remove("display");
+        $seasonBox.classList.add("display");
+        $selectOrder.removeAttribute("disabled");
+        $search.setAttribute("disabled","")
+     } else{
+       $resultBox.classList.add("display");
+        $optionCharacters.classList.add("display");
+        $optionLocations.classList.add("display");
+        $containerInfoCharacter.classList.add("display");
+        $seasonBox.classList.remove("display");
+        $sectionIndividualSeason.classList.add("display");
+        $containerLocation.classList.add("display");
+        $search.setAttribute("disabled","")
+     }
+ }
+ 
+ 
+ const charactersStatus = (value) => {
+ 
+  if(value === "all") {
+    statusCharacter = "";
+    loadDataCharacters("https://rickandmortyapi.com/api/character/");
+  } else {
+    statusCharacter = `&status=${value}`;
+    loadDataCharacters("https://rickandmortyapi.com/api/character/");
+  }
+ 
+ }
+ 
+ const characterLocation = (value) => {
+    if(value === "all") {
+       locationCharacters = "";
+       loadDataCharacters("https://rickandmortyapi.com/api/character/");
+     } else {
+       locationCharacters = `&status=${value}`;
+       loadDataCharacters("https://rickandmortyapi.com/api/character/");
+     }
+ 
+ }
+ 
+
 })
